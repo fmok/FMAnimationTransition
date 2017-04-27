@@ -16,6 +16,8 @@
 		84140FB01EB1C22D0070A730 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84140FAE1EB1C22D0070A730 /* LaunchScreen.storyboard */; };
 		84140FBB1EB1C22D0070A730 /* FMAnimationTransitionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84140FBA1EB1C22D0070A730 /* FMAnimationTransitionTests.m */; };
 		84140FC61EB1C22D0070A730 /* FMAnimationTransitionUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84140FC51EB1C22D0070A730 /* FMAnimationTransitionUITests.m */; };
+		84140FE21EB1D1010070A730 /* FMMyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 84140FE01EB1D1010070A730 /* FMMyButton.m */; };
+		84140FE51EB1D11E0070A730 /* FMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84140FE41EB1D11E0070A730 /* FMNavigationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		84140FC11EB1C22D0070A730 /* FMAnimationTransitionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FMAnimationTransitionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84140FC51EB1C22D0070A730 /* FMAnimationTransitionUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMAnimationTransitionUITests.m; sourceTree = "<group>"; };
 		84140FC71EB1C22D0070A730 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84140FDF1EB1D1010070A730 /* FMMyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMMyButton.h; sourceTree = "<group>"; };
+		84140FE01EB1D1010070A730 /* FMMyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMMyButton.m; sourceTree = "<group>"; };
+		84140FE31EB1D11E0070A730 /* FMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMNavigationController.h; sourceTree = "<group>"; };
+		84140FE41EB1D11E0070A730 /* FMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMNavigationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,7 @@
 		84140F9C1EB1C22D0070A730 /* FMAnimationTransition */ = {
 			isa = PBXGroup;
 			children = (
+				84140FDA1EB1C4790070A730 /* View */,
 				84140FA01EB1C22D0070A730 /* AppDelegate.h */,
 				84140FA11EB1C22D0070A730 /* AppDelegate.m */,
 				84140FA31EB1C22D0070A730 /* ViewController.h */,
@@ -141,6 +148,33 @@
 				84140FC71EB1C22D0070A730 /* Info.plist */,
 			);
 			path = FMAnimationTransitionUITests;
+			sourceTree = "<group>";
+		};
+		84140FDA1EB1C4790070A730 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84140FDE1EB1D1010070A730 /* MyButton */,
+				84140FE11EB1D1010070A730 /* NavigationController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		84140FDE1EB1D1010070A730 /* MyButton */ = {
+			isa = PBXGroup;
+			children = (
+				84140FDF1EB1D1010070A730 /* FMMyButton.h */,
+				84140FE01EB1D1010070A730 /* FMMyButton.m */,
+			);
+			path = MyButton;
+			sourceTree = "<group>";
+		};
+		84140FE11EB1D1010070A730 /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				84140FE31EB1D11E0070A730 /* FMNavigationController.h */,
+				84140FE41EB1D11E0070A730 /* FMNavigationController.m */,
+			);
+			path = NavigationController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,8 +315,10 @@
 			files = (
 				84140FAB1EB1C22D0070A730 /* FMAnimationTransition.xcdatamodeld in Sources */,
 				84140FA51EB1C22D0070A730 /* ViewController.m in Sources */,
+				84140FE51EB1D11E0070A730 /* FMNavigationController.m in Sources */,
 				84140FA21EB1C22D0070A730 /* AppDelegate.m in Sources */,
 				84140F9F1EB1C22D0070A730 /* main.m in Sources */,
+				84140FE21EB1D1010070A730 /* FMMyButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +469,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 538CZ4N2AQ;
 				INFOPLIST_FILE = FMAnimationTransition/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiemian.FMAnimationTransition;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -445,6 +482,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 538CZ4N2AQ;
 				INFOPLIST_FILE = FMAnimationTransition/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiemian.FMAnimationTransition;
 				PRODUCT_NAME = "$(TARGET_NAME)";
