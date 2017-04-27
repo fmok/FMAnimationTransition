@@ -7,8 +7,11 @@
 //
 
 #import "FMNavigationController.h"
+#import <objc/runtime.h>
 
-@interface FMNavigationController ()<UIGestureRecognizerDelegate, UINavigationControllerDelegate>
+@interface FMNavigationController ()<UIGestureRecognizerDelegate>
+
+@property (nonatomic, strong, readonly) UIPanGestureRecognizer *fullscreenPopGestureRecognizer;
 
 @end
 
@@ -24,22 +27,37 @@
 //****************************************** function 1 **********************************************
 - (void)fullScreenPopFuncOne
 {
-    // 创建全屏滑动手势，调用系统自带滑动手势的target的action方法
-    id target = self.interactivePopGestureRecognizer.delegate;
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:target action:@selector(handleNavigationTransition:)];
-    pan.delegate = self;
-    [self.view addGestureRecognizer:pan];
-    self.interactivePopGestureRecognizer.enabled = NO;
-    
+    if (![self.interactivePopGestureRecognizer.view.gestureRecognizers containsObject:self.fullscreenPopGestureRecognizer]) {
+        [self.interactivePopGestureRecognizer.view addGestureRecognizer:self.fullscreenPopGestureRecognizer];
+        NSArray *internalTargets = [self.interactivePopGestureRecognizer valueForKey:@"targets"];
+        id internalTarget = [internalTargets.firstObject valueForKey:@"target"];
+        SEL internalAction = NSSelectorFromString(@"handleNavigationTransition:");
+        self.fullscreenPopGestureRecognizer.delegate = self;
+        [self.fullscreenPopGestureRecognizer addTarget:internalTarget action:internalAction];
+        self.interactivePopGestureRecognizer.enabled = NO;
+    }
     // 实现以下代理 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 }
 
+#pragma mark - UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
     if (self.childViewControllers.count == 1) {
         return NO;
     }
     return YES;
+}
+
+#pragma mark - getter & setter
+- (UIPanGestureRecognizer *)fullscreenPopGestureRecognizer
+{
+    UIPanGestureRecognizer *panGestureRecognizer = objc_getAssociatedObject(self, _cmd);
+    if (!panGestureRecognizer) {
+        panGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
+        panGestureRecognizer.maximumNumberOfTouches = 1;
+        objc_setAssociatedObject(self, _cmd, panGestureRecognizer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return panGestureRecognizer;
 }
 
 //****************************************** function 2 **********************************************
